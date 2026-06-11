@@ -129,7 +129,7 @@ The Q2 model extends the classical PDDL model by introducing time and autonomous
 
 ## About planner waiting steps
 
-The online planner may insert explicit waiting intervals such as:
+The planner may insert explicit waiting intervals during timed plan extraction, such as:
 
 ```text
 -----waiting----- [1.0]
@@ -137,13 +137,13 @@ The online planner may insert explicit waiting intervals such as:
 
 These waiting steps are planner-output time-advancement intervals. They are not domain actions, they are not events, and they do not represent manipulation duration. Manipulation actions remain instantaneous in the model; only navigation is modelled as time-consuming.
 
-The waiting steps appear because the planner extracts the PDDL+ plan with a fixed execution delta. They are included in the timed tables below to match the online planner output.
+The waiting steps appear because the planner extracts the PDDL+ plan with a fixed execution delta. They are included in the timed tables below to match the planner output.
 
 ## Q2 simple PDDL+ timed plan
 
 ![Complex PDDL layout](Images/3.png)
 
-The mission deadline is `12`. With the online planner waiting step, coffee is served at time `12.0`. This is still valid because the `deadline-violation` event fires only when elapsed time becomes greater than the deadline.
+The mission deadline is `12`. With the planner waiting step, coffee is served at time `12.0`. This is still valid because the `deadline-violation` event fires only when elapsed time becomes greater than the deadline.
 
 | Time | Planner output |
 |---:|---|
@@ -177,7 +177,7 @@ The mission deadline is `12`. With the online planner waiting step, coffee is se
 
 ![Complex PDDL layout](Images/4.png)
 
-The mission deadline is `18`. The valid plan uses the direct edge `pantry -> machine`. With the online planner waiting step, coffee is served exactly at time `18.0`, so the deadline is not exceeded.
+The mission deadline is `18`. The valid plan uses the direct edge `pantry -> machine`. With the planner waiting step, coffee is served exactly at time `18.0`, so the deadline is not exceeded.
 
 | Time | Planner output |
 |---:|---|
@@ -274,7 +274,7 @@ This represents the task-motion gap discussed in the course materials. At the pl
 
 ## How to run
 
-1. Open the online planner at `https://editor.planning.domains/`.
+1. Open a PDDL/PDDL+ planner, such as `https://editor.planning.domains/`.
 2. Load the required domain file.
 3. Load the matching problem file.
 4. Run the planner.
