@@ -61,6 +61,9 @@ The Q1 model is a classical PDDL model using `:strips` and `:typing`. States are
 
 ## Q1 simple layout
 
+![Simple PDDL layout](image/1.png)
+
+
 The simple layout uses the `counter` as the central hub. The robot, cup, and coffee powder initially start at the counter. The goal is to serve the prepared coffee at the table.
 
 ### Valid plan
@@ -83,6 +86,8 @@ The simple layout uses the `counter` as the central hub. The robot, cup, and cof
 | 14 | `(serve-coffee cup1 table)` |
 
 ## Q1 complex layout
+
+![Complex PDDL layout](image/2.png)
 
 The complex layout distributes the objects across different locations. The robot starts in the hallway, the cup starts in the cupboard, and the coffee powder starts in the pantry. The goal is still to serve the prepared coffee at the table.
 
@@ -136,6 +141,8 @@ The waiting steps appear because the planner extracts the PDDL+ plan with a fixe
 
 ## Q2 simple PDDL+ timed plan
 
+![Complex PDDL layout](image/3.png)
+
 The mission deadline is `12`. With the online planner waiting step, coffee is served at time `12.0`. This is still valid because the `deadline-violation` event fires only when elapsed time becomes greater than the deadline.
 
 | Time | Planner output |
@@ -167,6 +174,8 @@ The mission deadline is `12`. With the online planner waiting step, coffee is se
 | 12.0 | `(serve-coffee cup1 table)` |
 
 ## Q2 complex PDDL+ timed plan
+
+![Complex PDDL layout](image/4.png)
 
 The mission deadline is `18`. The valid plan uses the direct edge `pantry -> machine`. With the online planner waiting step, coffee is served exactly at time `18.0`, so the deadline is not exceeded.
 
