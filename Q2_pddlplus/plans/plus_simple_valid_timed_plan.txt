@@ -1,0 +1,34 @@
+; Timed plan for problem_plus_simple_deadline.pddl
+; Agent actions are shown with absolute times. Lines marked [event] are autonomous PDDL+ events.
+; The mission deadline is 12.
+; The online planner inserts idle waiting steps during plan extraction.
+; These waiting steps are not domain actions or events and do not represent manipulation duration.
+; The plan serves coffee at t = 12.
+; Since the deadline-violation event fires only when elapsed-time is greater than the deadline,
+; serving exactly at t = 12 is still valid.
+
+0.0: (pick-up cup1 counter)
+0.0: -----waiting----- [1.0]
+1.0: (start-move counter sink)
+1.0: -----waiting----- [3.0]
+3.0: [event] (finish-move counter sink)
+3.0: (fill-water cup1 sink)
+3.0: (start-move sink counter)
+3.0: -----waiting----- [5.0]
+5.0: [event] (finish-move sink counter)
+5.0: (put-down cup1 counter)
+5.0: (pick-up coffee-powder counter)
+5.0: (add-coffee-powder coffee-powder cup1 counter)
+5.0: (put-down coffee-powder counter)
+5.0: (pick-up cup1 counter)
+5.0: (start-move counter machine)
+5.0: -----waiting----- [8.0]
+8.0: [event] (finish-move counter machine)
+8.0: (brew-coffee cup1 machine)
+8.0: (start-move machine counter)
+8.0: -----waiting----- [11.0]
+11.0: [event] (finish-move machine counter)
+11.0: (start-move counter table)
+11.0: -----waiting----- [12.0]
+12.0: [event] (finish-move counter table)
+12.0: (serve-coffee cup1 table)
