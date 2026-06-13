@@ -259,14 +259,6 @@ This represents the task-motion gap discussed in the course materials. At the pl
 4. Run the planner.
 5. Compare the resulting plan with the tables above.
 
-Recommended combinations:
-
-| Model | Domain | Problem | Expected output file |
-|---|---|---|---|
-| Classical PDDL — simple | `codes/Q1_pddl/domain_d2v3_basic.pddl` | `codes/Q1_pddl/problem_simple_layout.pddl` | `codes/output/pddl_simple_output.txt` |
-| Classical PDDL — complex | `codes/Q1_pddl/domain_d2v3_basic.pddl` | `codes/Q1_pddl/problem_complex_layout.pddl` | `codes/output/pddl_complex_output.txt` |
-| PDDL+ — simple | `codes/Q2_pddl_plus/domain_d2v3_pddlplus.pddl` | `codes/Q2_pddl_plus/problem_plus_simple_deadline.pddl` | `codes/output/pddlplus_simple_output.txt` |
-| PDDL+ — complex | `codes/Q2_pddl_plus/domain_d2v3_pddlplus.pddl` | `codes/Q2_pddl_plus/problem_plus_complex_deadline.pddl` | `codes/output/pddlplus_complex_output.txt` |
 
 ## Notes
 
@@ -276,14 +268,6 @@ Recommended combinations:
 - Waiting steps in planner output are idle time-advancement intervals, not manipulation duration.
 - A plan that is logically valid can still be temporally invalid if it exceeds the deadline.
 
-## Final submission checklist
-
-- Only the final files listed at the top of this README should be graded.
-- All four domain/problem combinations have been tested and run without errors.
-- Planner outputs are included under `codes/output/`.
-- The repository contains only the required `codes/`, `Report/`, and `slide/` folders at the root.
-- Old, duplicate, temporary, IDE, and unrelated files are not included.
-- The repository must be public before the deadline.
 
 ## References
 
