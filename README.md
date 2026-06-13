@@ -1,23 +1,38 @@
+> **Files to grade:** Please use only the final PDDL and PDDL+ files listed below.
+
+| Model | Scenario | Domain file | Problem file | Planner output |
+|---|---|---|---|---|
+| Classical PDDL | Simple layout | `codes/Q1_pddl/domain_d2v3_basic.pddl` | `codes/Q1_pddl/problem_simple_layout.pddl` | `codes/output/pddl_simple_output.txt` |
+| Classical PDDL | Complex layout | `codes/Q1_pddl/domain_d2v3_basic.pddl` | `codes/Q1_pddl/problem_complex_layout.pddl` | `codes/output/pddl_complex_output.txt` |
+| PDDL+ | Simple layout with deadline | `codes/Q2_pddl_plus/domain_d2v3_pddlplus.pddl` | `codes/Q2_pddl_plus/problem_plus_simple_deadline.pddl` | `codes/output/pddlplus_simple_output.txt` |
+| PDDL+ | Complex layout with deadline | `codes/Q2_pddl_plus/domain_d2v3_pddlplus.pddl` | `codes/Q2_pddl_plus/problem_plus_complex_deadline.pddl` | `codes/output/pddlplus_complex_output.txt` |
+
 # PDDL & PDDL+ Domestic Service Robot Mobile Manipulator
 
 This repository contains the PDDL and PDDL+ models for Assignment **D2-V3: Domestic Service Robot Mobile Manipulator**.
 
 The task models a domestic service robot preparing and serving coffee in a kitchen. The robot must both navigate between kitchen locations and manipulate objects such as a cup and coffee powder. Navigation and manipulation are deliberately modelled as separate actions, so object access depends on the robot location and movement is never merged with manipulation.
 
-## Repository contents
+## Repository structure
 
-| File | Description |
+The repository is organized into the three required folders:
+
+| Folder | Contents |
 |---|---|
-| `domain_d2v3_basic.pddl` | Classical PDDL domain for the coffee-preparation task. |
-| `problem_simple_layout.pddl` | Simple classical PDDL problem instance. |
-| `problem_complex_layout.pddl` | Complex classical PDDL problem instance with distributed objects and multiple moves. |
-| `domain_d2v3_pddlplus.pddl` | PDDL+ domain with time-consuming movement, processes, and events. |
-| `problem_plus_simple_deadline.pddl` | Simple PDDL+ problem with movement durations and a deadline. |
-| `problem_plus_complex_deadline.pddl` | Complex PDDL+ problem with movement durations and a deadline. |
-| `AI2_Report.pdf` | Final project report. |
-| `README.md` | This documentation file. |
+| `codes/` | Final PDDL and PDDL+ domain/problem files, together with planner outputs. |
+| `Report/` | Final PDF report and README images. |
+| `slide/` | Final presentation slides. |
 
+### Final submission files
 
+| Deliverable | Final path |
+|---|---|
+| Classical PDDL files | `codes/Q1_pddl/` |
+| PDDL+ files | `codes/Q2_pddl_plus/` |
+| Planner outputs | `codes/output/` |
+| Final report | `Report/AI2_Report.pdf` |
+| Final slides | `slide/AI2_Presentation.pdf` |
+| README images | `Report/Images/` |
 ## Modelling goals
 
 The model addresses the following requirements:
@@ -61,7 +76,7 @@ The Q1 model is a classical PDDL model using `:strips` and `:typing`. States are
 
 ## Q1 simple layout
 
-![Simple PDDL layout](Images/1.png)
+![Simple PDDL layout](Report/Images/1.png)
 
 
 The simple layout uses the `counter` as the central hub. The robot, cup, and coffee powder initially start at the counter. The goal is to serve the prepared coffee at the table.
@@ -87,7 +102,7 @@ The simple layout uses the `counter` as the central hub. The robot, cup, and cof
 
 ## Q1 complex layout
 
-![Complex PDDL layout](Images/2.png)
+![Complex PDDL layout](Report/Images/2.png)
 
 The complex layout distributes the objects across different locations. The robot starts in the hallway, the cup starts in the cupboard, and the coffee powder starts in the pantry. The goal is still to serve the prepared coffee at the table.
 
@@ -116,6 +131,8 @@ The complex layout distributes the objects across different locations. The robot
 
 The Q2 model extends the classical PDDL model by introducing time and autonomous world evolution. In the classical model, `move` is instantaneous. In the PDDL+ model, movement is time-consuming and is represented through a start action, continuous progress, and an automatic finishing event.
 
+The `movement-progress` process is load-bearing rather than decorative. It increases the numeric fluent `move-progress`, and the automatic `finish-move` event can only occur when this value reaches `current-move-duration`. Until then, the robot remains in the `moving` state and has not reached its destination, so location-dependent manipulation actions cannot be executed.
+
 ### Main PDDL+ constructs
 
 | Construct group | Elements | Purpose |
@@ -141,7 +158,7 @@ The waiting steps appear because the planner extracts the PDDL+ plan with a fixe
 
 ## Q2 simple PDDL+ timed plan
 
-![Complex PDDL layout](Images/3.png)
+![Simple PDDL+ layout](Report/Images/3.png)
 
 The mission deadline is `12`. With the planner waiting step, coffee is served at time `12.0`. This is still valid because the `deadline-violation` event fires only when elapsed time becomes greater than the deadline.
 
@@ -175,7 +192,7 @@ The mission deadline is `12`. With the planner waiting step, coffee is served at
 
 ## Q2 complex PDDL+ timed plan
 
-![Complex PDDL layout](Images/4.png)
+![Complex PDDL layout](Report/Images/4.png)
 
 The mission deadline is `18`. The valid plan uses the direct edge `pantry -> machine`. With the planner waiting step, coffee is served exactly at time `18.0`, so the deadline is not exceeded.
 
@@ -213,51 +230,6 @@ The mission deadline is `18`. The valid plan uses the direct edge `pantry -> mac
 | 18.0 | `[event] (finish-move machine table)` |
 | 18.0 | `(serve-coffee cup1 table)` |
 
-## Invalid long-route demonstration
-
-The same complex instance becomes invalid if the robot uses the longer route `pantry -> hallway -> machine` instead of the direct route `pantry -> machine`. This increases the accumulated movement time, and the serving step would only be reached at time `21.0`.
-
-Since the deadline is `18`, the `deadline-violation` event fires before the coffee can be served.
-
-| Time | Planner output |
-|---:|---|
-| 0.0 | `-----waiting----- [1.0]` |
-| 1.0 | `(start-move hallway cupboard)` |
-| 1.0 | `-----waiting----- [3.0]` |
-| 3.0 | `[event] (finish-move hallway cupboard)` |
-| 3.0 | `(pick-up cup1 cupboard)` |
-| 3.0 | `(start-move cupboard hallway)` |
-| 3.0 | `-----waiting----- [5.0]` |
-| 5.0 | `[event] (finish-move cupboard hallway)` |
-| 5.0 | `(start-move hallway sink)` |
-| 5.0 | `-----waiting----- [8.0]` |
-| 8.0 | `[event] (finish-move hallway sink)` |
-| 8.0 | `(fill-water cup1 sink)` |
-| 8.0 | `(start-move sink hallway)` |
-| 8.0 | `-----waiting----- [11.0]` |
-| 11.0 | `[event] (finish-move sink hallway)` |
-| 11.0 | `(start-move hallway pantry)` |
-| 11.0 | `-----waiting----- [13.0]` |
-| 13.0 | `[event] (finish-move hallway pantry)` |
-| 13.0 | `(put-down cup1 pantry)` |
-| 13.0 | `(pick-up coffee-powder pantry)` |
-| 13.0 | `(add-coffee-powder coffee-powder cup1 pantry)` |
-| 13.0 | `(put-down coffee-powder pantry)` |
-| 13.0 | `(pick-up cup1 pantry)` |
-| 13.0 | `(start-move pantry hallway)` |
-| 13.0 | `-----waiting----- [15.0]` |
-| 15.0 | `[event] (finish-move pantry hallway)` |
-| 15.0 | `(start-move hallway machine)` |
-| 15.0 | `-----waiting----- [18.0001]` |
-| 18.0001 | `[event] (deadline-violation)` |
-| 19.0 | `[event] (finish-move hallway machine) ; autonomous movement completion may still occur, but the mission has already failed` |
-| 19.0 | `(brew-coffee cup1 machine) ; not executable after deadline-violation` |
-| 19.0 | `(start-move machine table) ; not executable after deadline-violation` |
-| 21.0 | `[event] (finish-move machine table) ; not executable after deadline-violation` |
-| 21.0 | `(serve-coffee cup1 table) ; not executable because deadline-missed is true and mission-running is false` |
-
-After the `deadline-violation` event is triggered, the mission is no longer running, so the following agent actions are not executable in the actual model. The autonomous `finish-move` event may still complete a movement that had already started, but the task has already failed. The remaining rows are included only to illustrate that the longer route would reach the serving step too late.
-
 ## Discussion
 
 ### Integration of navigation and manipulation
@@ -272,6 +244,13 @@ The model is deliberately symbolic. It does not compute robot trajectories, gras
 
 This represents the task-motion gap discussed in the course materials. At the planning level, the robot reasons with discrete locations and logical facts, but real execution would require continuous motion planning, collision checking, grasp planning, and low-level control. Therefore, the PDDL and PDDL+ models capture the high-level task structure, while the detailed physical execution is left outside the scope of this assignment.
 
+## Limitations and known issues
+
+- Manipulation actions are intentionally modelled as instantaneous, while only navigation consumes time.
+- The model does not represent geometric trajectories, grasp poses, collision checking, arm configurations, uncertainty, or low-level control.
+- Waiting intervals shown in planner output are plan-extraction time-advancement steps; they are not domain actions or events and do not represent manipulation duration.
+- The model is therefore suitable for symbolic task-level planning, but it does not represent the complete physical execution of a real robot.
+
 ## How to run
 
 1. Open a PDDL/PDDL+ planner, such as `https://editor.planning.domains/`.
@@ -282,12 +261,12 @@ This represents the task-motion gap discussed in the course materials. At the pl
 
 Recommended combinations:
 
-| Domain | Problem |
-|---|---|
-| `domain_d2v3_basic.pddl` | `problem_simple_layout.pddl` |
-| `domain_d2v3_basic.pddl` | `problem_complex_layout.pddl` |
-| `domain_d2v3_pddlplus.pddl` | `problem_plus_simple_deadline.pddl` |
-| `domain_d2v3_pddlplus.pddl` | `problem_plus_complex_deadline.pddl` |
+| Model | Domain | Problem | Expected output file |
+|---|---|---|---|
+| Classical PDDL — simple | `codes/Q1_pddl/domain_d2v3_basic.pddl` | `codes/Q1_pddl/problem_simple_layout.pddl` | `codes/output/pddl_simple_output.txt` |
+| Classical PDDL — complex | `codes/Q1_pddl/domain_d2v3_basic.pddl` | `codes/Q1_pddl/problem_complex_layout.pddl` | `codes/output/pddl_complex_output.txt` |
+| PDDL+ — simple | `codes/Q2_pddl_plus/domain_d2v3_pddlplus.pddl` | `codes/Q2_pddl_plus/problem_plus_simple_deadline.pddl` | `codes/output/pddlplus_simple_output.txt` |
+| PDDL+ — complex | `codes/Q2_pddl_plus/domain_d2v3_pddlplus.pddl` | `codes/Q2_pddl_plus/problem_plus_complex_deadline.pddl` | `codes/output/pddlplus_complex_output.txt` |
 
 ## Notes
 
@@ -296,7 +275,15 @@ Recommended combinations:
 - Manipulation actions remain instantaneous.
 - Waiting steps in planner output are idle time-advancement intervals, not manipulation duration.
 - A plan that is logically valid can still be temporally invalid if it exceeds the deadline.
-- The invalid long-route case demonstrates this difference between reachability and temporal validity.
+
+## Final submission checklist
+
+- Only the final files listed at the top of this README should be graded.
+- All four domain/problem combinations have been tested and run without errors.
+- Planner outputs are included under `codes/output/`.
+- The repository contains only the required `codes/`, `Report/`, and `slide/` folders at the root.
+- Old, duplicate, temporary, IDE, and unrelated files are not included.
+- The repository must be public before the deadline.
 
 ## References
 
