@@ -1,4 +1,3 @@
-java -jar "D:/ROBOTICS ENGINEERING/AI2/D2V3_Mobile_Manipulator_Project/ENHSP-Public/enhsp-dist/enhsp.jar" -o C:\Users\Lenovo\AppData\Local\Temp\domain--4824-IfgIk1KKj1qp-.pddl -f C:\Users\Lenovo\AppData\Local\Temp\problem--4824-8ZQNzAVM6vRv-.pddl -planner sat-hmrph  
 Domain parsed
 Problem parsed
 Grounding..
