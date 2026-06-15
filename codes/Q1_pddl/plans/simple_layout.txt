@@ -1,14 +1,51 @@
-1.  (pick-up cup1 counter)
-2.  (move counter sink)
-3.  (fill-water cup1 sink)
-4.  (move sink counter)
-5.  (put-down cup1 counter)
-6.  (pick-up coffee-powder counter)
-7.  (add-coffee-powder coffee-powder cup1 counter)
-8.  (put-down coffee-powder counter)
-9.  (pick-up cup1 counter)
-10. (move counter machine)
-11. (brew-coffee cup1 machine)
-12. (move machine counter)
-13. (move counter table)
-14. (serve-coffee cup1 table)
+java -jar "D:/ROBOTICS ENGINEERING/AI2/D2V3_Mobile_Manipulator_Project/ENHSP-Public/enhsp-dist/enhsp.jar" -o C:\Users\Lenovo\AppData\Local\Temp\domain--4824-Fe7MaijBRVj6-.pddl -f C:\Users\Lenovo\AppData\Local\Temp\problem--4824-UHvCFesk3TKF-.pddl -planner sat-hmrph  
+Domain parsed
+Problem parsed
+Grounding..
+Grounding Time: 14
+Aibr Preprocessing
+UFX:false
+|F|:20
+|X|:0
+|A|:29
+|P|:0
+|E|:0
+Numeric Error for Complex Condition Activated
+H1 Setup Time (msec): 7
+h(I):10.0
+ g(n)= 4.0 h(n)=9.0
+ g(n)= 4.0 h(n)=7.0
+ g(n)= 7.0 h(n)=6.0
+ g(n)= 8.0 h(n)=5.0
+ g(n)= 9.0 h(n)=4.0
+ g(n)= 11.0 h(n)=3.0
+ g(n)= 12.0 h(n)=2.0
+ g(n)= 13.0 h(n)=1.0
+Problem Solved
+
+Found Plan:
+0.0: (pick-up cup1 counter)
+1.0: (move counter sink)
+2.0: (fill-water cup1 sink)
+3.0: (move sink counter)
+4.0: (put-down cup1 counter)
+5.0: (pick-up coffee-powder counter)
+6.0: (add-coffee-powder coffee-powder cup1 counter)
+7.0: (put-down coffee-powder counter)
+8.0: (pick-up cup1 counter)
+9.0: (move counter machine)
+10.0: (brew-coffee cup1 machine)
+11.0: (move machine counter)
+12.0: (move counter table)
+13.0: (serve-coffee cup1 table)
+
+Plan-Length:14
+Metric (Search):14.0
+Planning Time (msec): 20
+Heuristic Time (msec): 12
+Search Time (msec): 19
+Expanded Nodes:28
+States Evaluated:44
+Number of Dead-Ends detected:0
+Number of Duplicates detected:18
+Planner found 1 plan(s) in 0.259secs.
