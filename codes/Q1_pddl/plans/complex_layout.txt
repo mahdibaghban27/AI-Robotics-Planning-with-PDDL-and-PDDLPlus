@@ -1,51 +1,60 @@
-java -jar "D:/ROBOTICS ENGINEERING/AI2/D2V3_Mobile_Manipulator_Project/ENHSP-Public/enhsp-dist/enhsp.jar" -o C:\Users\Lenovo\AppData\Local\Temp\domain--4824-Fe7MaijBRVj6-.pddl -f C:\Users\Lenovo\AppData\Local\Temp\problem--4824-UHvCFesk3TKF-.pddl -planner sat-hmrph  
+java -jar "D:/ROBOTICS ENGINEERING/AI2/D2V3_Mobile_Manipulator_Project/ENHSP-Public/enhsp-dist/enhsp.jar" -o C:\Users\Lenovo\AppData\Local\Temp\domain--4824-QuYfBDNUPg6r-.pddl -f C:\Users\Lenovo\AppData\Local\Temp\problem--4824-8xpGm9xrDF7N-.pddl -planner sat-hmrph  
 Domain parsed
 Problem parsed
 Grounding..
-Grounding Time: 14
+Grounding Time: 12
 Aibr Preprocessing
 UFX:false
-|F|:20
+|F|:26
 |X|:0
-|A|:29
+|A|:45
 |P|:0
 |E|:0
 Numeric Error for Complex Condition Activated
-H1 Setup Time (msec): 7
-h(I):10.0
- g(n)= 4.0 h(n)=9.0
- g(n)= 4.0 h(n)=7.0
- g(n)= 7.0 h(n)=6.0
- g(n)= 8.0 h(n)=5.0
- g(n)= 9.0 h(n)=4.0
- g(n)= 11.0 h(n)=3.0
- g(n)= 12.0 h(n)=2.0
- g(n)= 13.0 h(n)=1.0
+H1 Setup Time (msec): 8
+h(I):12.0
+ g(n)= 3.0 h(n)=11.0
+ g(n)= 9.0 h(n)=9.0
+ g(n)= 12.0 h(n)=8.0
+ g(n)= 14.0 h(n)=7.0
+ g(n)= 15.0 h(n)=6.0
+ g(n)= 16.0 h(n)=5.0
+ g(n)= 17.0 h(n)=4.0
+ g(n)= 18.0 h(n)=3.0
+ g(n)= 19.0 h(n)=2.0
+ g(n)= 20.0 h(n)=1.0
 Problem Solved
 
 Found Plan:
-0.0: (pick-up cup1 counter)
-1.0: (move counter sink)
-2.0: (fill-water cup1 sink)
-3.0: (move sink counter)
-4.0: (put-down cup1 counter)
-5.0: (pick-up coffee-powder counter)
-6.0: (add-coffee-powder coffee-powder cup1 counter)
-7.0: (put-down coffee-powder counter)
-8.0: (pick-up cup1 counter)
-9.0: (move counter machine)
-10.0: (brew-coffee cup1 machine)
-11.0: (move machine counter)
-12.0: (move counter table)
-13.0: (serve-coffee cup1 table)
+0.0: (move hallway pantry)
+1.0: (pick-up coffee-powder pantry)
+2.0: (move pantry hallway)
+3.0: (move hallway sink)
+4.0: (put-down coffee-powder sink)
+5.0: (move sink hallway)
+6.0: (move hallway cupboard)
+7.0: (pick-up cup1 cupboard)
+8.0: (move cupboard hallway)
+9.0: (move hallway sink)
+10.0: (fill-water cup1 sink)
+11.0: (put-down cup1 sink)
+12.0: (pick-up coffee-powder sink)
+13.0: (add-coffee-powder coffee-powder cup1 sink)
+14.0: (put-down coffee-powder sink)
+15.0: (pick-up cup1 sink)
+16.0: (move sink hallway)
+17.0: (move hallway machine)
+18.0: (brew-coffee cup1 machine)
+19.0: (move machine table)
+20.0: (serve-coffee cup1 table)
 
-Plan-Length:14
-Metric (Search):14.0
-Planning Time (msec): 20
-Heuristic Time (msec): 12
-Search Time (msec): 19
-Expanded Nodes:28
-States Evaluated:44
+Plan-Length:21
+Metric (Search):21.0
+Planning Time (msec): 25
+Heuristic Time (msec): 14
+Search Time (msec): 24
+Expanded Nodes:36
+States Evaluated:55
 Number of Dead-Ends detected:0
-Number of Duplicates detected:18
-Planner found 1 plan(s) in 0.259secs.
+Number of Duplicates detected:27
+Planner found 1 plan(s) in 0.3secs.
