@@ -1,5 +1,4 @@
 ; Timed plan for problem_plus_simple_deadline.pddl
-; Agent actions are shown with absolute times. Lines marked [event] are autonomous PDDL+ events.
 ; The mission deadline is 12.
 ; The online planner inserts idle waiting steps during plan extraction.
 ; These waiting steps are not domain actions or events and do not represent manipulation duration.
