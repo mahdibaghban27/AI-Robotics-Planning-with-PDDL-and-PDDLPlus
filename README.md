@@ -281,7 +281,7 @@ Example:
 
 ```bash
 java -jar enhsp.jar -o <domain-file> -f <problem-file> -planner sat-hmrph
-
+```
 
 ## Notes
 
