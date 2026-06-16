@@ -1,0 +1,41 @@
+; Invalid timing demonstration for problem_plus_complex_deadline.pddl
+; This plan takes the longer route pantry -> hallway -> machine instead of direct pantry -> machine.
+; The online planner inserts idle waiting steps during plan extraction.
+; These waiting steps are not domain actions or events and do not represent manipulation duration.
+; With this longer route, the serving step would only be reached at t = 21.
+; Since the deadline is 18, the deadline-violation event fires before serving.
+
+0.0: -----waiting----- [1.0]
+1.0: (start-move hallway cupboard)
+1.0: -----waiting----- [3.0]
+3.0: [event] (finish-move hallway cupboard)
+3.0: (pick-up cup1 cupboard)
+3.0: (start-move cupboard hallway)
+3.0: -----waiting----- [5.0]
+5.0: [event] (finish-move cupboard hallway)
+5.0: (start-move hallway sink)
+5.0: -----waiting----- [8.0]
+8.0: [event] (finish-move hallway sink)
+8.0: (fill-water cup1 sink)
+8.0: (start-move sink hallway)
+8.0: -----waiting----- [11.0]
+11.0: [event] (finish-move sink hallway)
+11.0: (start-move hallway pantry)
+11.0: -----waiting----- [13.0]
+13.0: [event] (finish-move hallway pantry)
+13.0: (put-down cup1 pantry)
+13.0: (pick-up coffee-powder pantry)
+13.0: (add-coffee-powder coffee-powder cup1 pantry)
+13.0: (put-down coffee-powder pantry)
+13.0: (pick-up cup1 pantry)
+13.0: (start-move pantry hallway)
+13.0: -----waiting----- [15.0]
+15.0: [event] (finish-move pantry hallway)
+15.0: (start-move hallway machine)
+15.0: -----waiting----- [18.0001]
+18.0001: [event] (deadline-violation)
+19.0: [event] (finish-move hallway machine) ; movement would finish, but the mission has already failed
+19.0: (brew-coffee cup1 machine) ; not executable after deadline-violation
+19.0: (start-move machine table) ; not executable after deadline-violation
+21.0: [event] (finish-move machine table) ; not executable after deadline-violation
+21.0: (serve-coffee cup1 table) ; not executable because deadline-missed is true and mission-running is false

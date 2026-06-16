@@ -1,0 +1,59 @@
+Domain parsed
+Problem parsed
+Grounding..
+Grounding Time: 14
+Aibr Preprocessing
+UFX:false
+|F|:26
+|X|:0
+|A|:45
+|P|:0
+|E|:0
+Numeric Error for Complex Condition Activated
+H1 Setup Time (msec): 9
+h(I):12.0
+ g(n)= 3.0 h(n)=11.0
+ g(n)= 9.0 h(n)=9.0
+ g(n)= 12.0 h(n)=8.0
+ g(n)= 14.0 h(n)=7.0
+ g(n)= 15.0 h(n)=6.0
+ g(n)= 16.0 h(n)=5.0
+ g(n)= 17.0 h(n)=4.0
+ g(n)= 18.0 h(n)=3.0
+ g(n)= 19.0 h(n)=2.0
+ g(n)= 20.0 h(n)=1.0
+Problem Solved
+
+Found Plan:
+0.0: (move hallway pantry)
+1.0: (pick-up coffee-powder pantry)
+2.0: (move pantry hallway)
+3.0: (move hallway sink)
+4.0: (put-down coffee-powder sink)
+5.0: (move sink hallway)
+6.0: (move hallway cupboard)
+7.0: (pick-up cup1 cupboard)
+8.0: (move cupboard hallway)
+9.0: (move hallway sink)
+10.0: (fill-water cup1 sink)
+11.0: (put-down cup1 sink)
+12.0: (pick-up coffee-powder sink)
+13.0: (add-coffee-powder coffee-powder cup1 sink)
+14.0: (put-down coffee-powder sink)
+15.0: (pick-up cup1 sink)
+16.0: (move sink hallway)
+17.0: (move hallway machine)
+18.0: (brew-coffee cup1 machine)
+19.0: (move machine table)
+20.0: (serve-coffee cup1 table)
+
+Plan-Length:21
+Metric (Search):21.0
+Planning Time (msec): 24
+Heuristic Time (msec): 15
+Search Time (msec): 23
+Expanded Nodes:36
+States Evaluated:55
+Number of Dead-Ends detected:0
+Number of Duplicates detected:27
+Planner found 1 plan(s) in 0.312secs.
