@@ -259,14 +259,6 @@ The model is deliberately symbolic. It does not compute robot trajectories, gras
 
 This represents the task-motion gap discussed in the course materials. At the planning level, the robot reasons with discrete locations and logical facts, but real execution would require continuous motion planning, collision checking, grasp planning, and low-level control. Therefore, the PDDL and PDDL+ models capture the high-level task structure, while the detailed physical execution is left outside the scope of this assignment.
 
-## Limitations and known issues
-
-- Manipulation actions are intentionally modelled as instantaneous, while only navigation consumes time.
-- The model does not represent geometric trajectories, grasp poses, collision checking, arm configurations, uncertainty, or low-level control.
-- Waiting intervals shown in planner output are plan-extraction time-advancement steps; they are not domain actions or events and do not represent manipulation duration.
-- The model is therefore suitable for symbolic task-level planning, but it does not represent the complete physical execution of a real robot.
-
-
 ## How to run
 
 ### Q1 — Classical PDDL
@@ -282,6 +274,14 @@ Example:
 ```bash
 java -jar enhsp.jar -o <domain-file> -f <problem-file> -planner sat-hmrph
 ```
+
+## Limitations and known issues
+
+- Manipulation actions are intentionally modelled as instantaneous, while only navigation consumes time.
+- The model does not represent geometric trajectories, grasp poses, collision checking, arm configurations, uncertainty, or low-level control.
+- Waiting intervals shown in planner output are plan-extraction time-advancement steps; they are not domain actions or events and do not represent manipulation duration.
+- The model is therefore suitable for symbolic task-level planning, but it does not represent the complete physical execution of a real robot.
+
 
 ## Notes
 
