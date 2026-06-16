@@ -266,13 +266,21 @@ This represents the task-motion gap discussed in the course materials. At the pl
 - Waiting intervals shown in planner output are plan-extraction time-advancement steps; they are not domain actions or events and do not represent manipulation duration.
 - The model is therefore suitable for symbolic task-level planning, but it does not represent the complete physical execution of a real robot.
 
+
 ## How to run
 
-1. Open a PDDL/PDDL+ planner, such as `https://editor.planning.domains/`.
-2. Load the required domain file.
-3. Load the matching problem file.
-4. Run the planner.
-5. Compare the resulting plan with the tables above.
+### Q1 — Classical PDDL
+
+Load the Q1 domain and the matching problem file in a classical PDDL planner, then compare the generated plan with the corresponding file in `codes/Q1_pddl/plans/`.
+
+### Q2 — PDDL+
+
+Use ENHSP or another planner supporting PDDL+ processes, events, numeric fluents, and continuous effects.
+
+Example:
+
+```bash
+java -jar enhsp.jar -o <domain-file> -f <problem-file> -planner sat-hmrph
 
 
 ## Notes
