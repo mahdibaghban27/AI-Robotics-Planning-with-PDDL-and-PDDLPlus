@@ -1,5 +1,7 @@
 **Final files to check:** 
+
 PDDL — `codes/Q1_pddl/domain_d2v3_basic.pddl` with `codes/Q1_pddl/problem_simple_layout.pddl` and `codes/Q1_pddl/problem_complex_layout.pddl`; 
+
 PDDL+ — `codes/Q2_pddl_plus/domain_d2v3_pddlplus.pddl` with `codes/Q2_pddl_plus/problem_plus_simple_deadline.pddl` and `codes/Q2_pddl_plus/problem_plus_complex_deadline.pddl`.
 
 | Model | Scenario | Domain file | Problem file | Planner output |
